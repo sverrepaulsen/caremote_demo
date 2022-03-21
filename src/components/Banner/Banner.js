@@ -4,18 +4,22 @@ import Button from '@mui/material/Button';
 import Search from '../Search/Search';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
-import { showDialog } from '../Search/searchDialogSlice'
+import { showSearchDialog } from '../Search/searchDialogSlice'
+import { showConfigureDialog } from '../Configure/configureDialogSlice';
+import Configure from '../Configure/Configure';
 
 function Banner() {
     const navigate = useNavigate();
-    const show = useSelector(state => state.search_dialog.show)
+    const showSearch = useSelector(state => state.search_dialog.show)
+    const showConfigure = useSelector(state => state.configure_dialog.show)
     const dispatch = useDispatch()
 
     return (
         <div className='banner'>
             <div className='banner_search'>
-                {show && <Search />}
-                <Button onClick={() => dispatch(showDialog())} className='banner_searchButton' variant='contained'>
+                {showSearch && <Search />}
+                {showConfigure && <Configure />}
+                <Button onClick={() => dispatch(showSearchDialog())} className='banner_searchButton' variant='contained'>
                     {"Search Codes"}
                 </Button>
             </div>
@@ -24,7 +28,7 @@ function Banner() {
                 <h5>
                     Banner Main Text
                 </h5>
-                <Button onClick={() => navigate('/configure')} variant='contained'>Create Disease Configuration</Button>
+                <Button onClick={() => dispatch(showConfigureDialog())} variant='contained'>Create Disease Configuration</Button>
             </div>
         </div>
     )

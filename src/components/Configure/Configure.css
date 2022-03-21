@@ -1,0 +1,38 @@
+.MuiDialog-paper{
+    width: 100vh;
+    overflow-y: hidden !important;
+    overflow-x: hidden;
+    color: #0D3F81;
+}
+
+.dialog_autocomplete{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.slider_header{
+    padding-top: 10px;
+}
+
+.dialog_action{
+    align-content: center;
+    justify-content: center !important;
+}
+
+.dialog_action > button{
+    background-color: white;
+    color: #0D3F81;
+    width: 30vh;
+    font-weight: 600 !important;
+    text-transform: inherit !important;
+}
+
+.dialog_action > button:hover{
+    color: white !important;
+    background-color:#B361ED !important;
+    
+}
+
+.slider{
+    color: #B361ED !important;
+}

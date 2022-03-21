@@ -1,49 +1,39 @@
-import React, {useState, useEffect, useRef} from "react";
-import db from  "../../app/firebase"
-import { collection, query, where, getDocs } from "firebase/firestore"; 
+import React from "react";
+import './Configure.css'
+import { useSelector, useDispatch } from 'react-redux'
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'; 
 import { useNavigate } from "react-router-dom";
-import Button from '@mui/material/Button';
+import { hideConfigureDialog } from "./configureDialogSlice";
+import AutocompleteBoxes from "../AutocompleteBoxes/AutocompleteBoxes";
+import PriceSlider from "../PriceSlider/PriceSlider";
 
 export default function Configure() {
-    const navigate = useNavigate();
-    const [blogs,setBlogs] = useState([])
-    const hasFetchedData = useRef(false);
+    const navigate = useNavigate();  
+    const show = useSelector((state) => state.configure_dialog.show)
+    
+    const dispatch = useDispatch()
 
-
-    useEffect(() => {
-        if(!hasFetchedData.current)
+    
+    const handleClose = (nav = false) => {
+        if(nav === true)
         {
-            fetchBlogs();
-            hasFetchedData.current = true;
+            dispatch(hideConfigureDialog());
+            navigate('/store')
         }
-      }, )
-
-    const fetchBlogs = async () => {
-        const q = query(collection(db, "Blogs")); //, where("capital", "==", true)
-        const q1 = query(collection(db, "Blogs"), where("id", ">", 1));
-        const q2 = query(collection(db, "Blogs"), where("posted_by", "!=", "Paulsen"))
-        const q3 = query(collection(db, "Blogs"), where("contains", "array-contains", "image"))
-        const q4 = query(collection(db, "Blogs"), where("title", "in", ['Demo Blog', 'Demo 3']))
-        const q5 = query(collection(db, "Blogs"), where("posted_by", "==", "Sverre"), where("contains", "array-contains", "text"));
-        const querySnapshot = await getDocs(q5);
-        querySnapshot.forEach((doc) => {
-            setBlogs(blogs => [...blogs, doc.data()])
-        });
-    }
+        dispatch(hideConfigureDialog());
+    };
 
     return (
-        <div className="App">
-            {
-                blogs && blogs.map(blog => {
-                return(
-                    <div key={blog.id} className="blog-container">
-                        <h4>{blog.title}</h4>
-                        <p>{blog.body}</p>
-                    </div>
-                )
-                })
-            }
-            <Button onClick={() => navigate("/")}>go back</Button>
-        </div>
+        <Dialog open = {show} onClose = {handleClose}>
+            <DialogTitle>Create A Disease Configuration</DialogTitle>
+            <DialogContent className = "dialog_content">
+                <AutocompleteBoxes/>
+                <DialogContentText variant = "overline" className = "slider_header">Price Range</DialogContentText>
+                <PriceSlider/>
+            </DialogContent>
+            <DialogActions className="dialog_action">
+                <Button variant="contained" onClick = {() => handleClose(true)}>Confirm Configuration</Button>
+            </DialogActions>
+        </Dialog>
   );
 }

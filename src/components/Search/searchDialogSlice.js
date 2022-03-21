@@ -6,16 +6,16 @@ export const searchDialogSlice = createSlice({
     show: false,
   },
   reducers: {
-    showDialog: (state) => {
+    showSearchDialog: (state) => {
       state.show = true
     },
-    hideDialog: (state) => {
+    hideSearchDialog: (state) => {
       state.show = false
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { showDialog, hideDialog } = searchDialogSlice.actions
+export const { showSearchDialog, hideSearchDialog } = searchDialogSlice.actions
 
 export default searchDialogSlice.reducer

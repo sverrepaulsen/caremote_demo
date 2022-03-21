@@ -1,5 +1,4 @@
 
-@media (min-width: 100px) {
   .card {
     margin: 10px;
     border-radius: 10px;
@@ -39,11 +38,8 @@
       margin-top: 8px;
       margin-bottom: 8px;
     }
-}
 
-@media (min-width: 1200px) {
 
-}
 
 
 

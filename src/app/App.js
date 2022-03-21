@@ -3,7 +3,7 @@ import './App.css';
 import Home from '../components/Home/Home'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
-import Configure from '../components/Configure/Configure'
+import Store from '../components/Store/Store'
 import {
   BrowserRouter as 
   Router,
@@ -17,7 +17,7 @@ function App() {
       <Router>
         <Header />
           <Routes>
-            <Route path="/configure" element={<Configure/>}/>
+            <Route path="/store" element={<Store/>}/>
             <Route path="/" element={<Home/>}/>
           </Routes>
           <Footer/>
