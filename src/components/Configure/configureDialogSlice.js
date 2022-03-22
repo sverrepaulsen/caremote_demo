@@ -30,7 +30,6 @@ export const configureDialogSlice = createSlice({
     },
     setUpperRange: (state, action) => {
       state.price_range[1] = Math.max(action.payload.value, state.price_range[0] + action.payload.dist)
-      //setValue([value[0], Math.max(newValue[1], value[0] + minDistance)]);
     }
 
   },
