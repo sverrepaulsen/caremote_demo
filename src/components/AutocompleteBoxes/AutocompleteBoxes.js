@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from 'react-redux'
 import { TextField, Autocomplete } from '@mui/material'; 
-import { setDiseases, setInsurance, setLiteracy, setLowerRange, setUpperRange } from "../Configure/configureDialogSlice";
+import { setDiseases, setInsurance, setLiteracy } from "../Configure/configureDialogSlice";
 
 const AutocompleteBoxes = ({defdisease = undefined, defliteracy = undefined, definsurance = undefined}) => {
     const dispatch = useDispatch()
@@ -29,7 +29,7 @@ const AutocompleteBoxes = ({defdisease = undefined, defliteracy = undefined, def
                     id = "disease_selector"
                     options = {diseases}
                     filterSelectedOptions
-                    defaultValue={defdisease}
+                    value={defdisease}
                     onChange={(e, value) => handleAutocompleteChange(e, value, "disease")}
                     renderInput = {(params) => (
                         <TextField {...params} label = "Diseases" />
@@ -40,7 +40,7 @@ const AutocompleteBoxes = ({defdisease = undefined, defliteracy = undefined, def
                     disablePortal
                     id = "literacy_selector"
                     options = {digital_literacy}
-                    defaultValue={defliteracy}
+                    value={defliteracy}
                     onChange={(e, value) => handleAutocompleteChange(e, value, "literacy")}
                     renderInput = {(params) => (
                         <TextField {...params} label = "Digital Literacy"/>
@@ -51,7 +51,7 @@ const AutocompleteBoxes = ({defdisease = undefined, defliteracy = undefined, def
                     disablePortal
                     id = "insurance_selector"
                     options = {insurance}
-                    defaultValue={definsurance}
+                    value={definsurance}
                     onChange={(e, value) => handleAutocompleteChange(e, value, "insurance")}
                     renderInput = {(params) => (
                         <TextField {...params} label = "Health Insurance Provider"/>
